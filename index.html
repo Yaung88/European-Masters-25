@@ -31,6 +31,9 @@
             background: linear-gradient(to bottom, #111, #222);
             padding: 20px;
             box-shadow: 0 4px 10px rgba(212, 175, 55, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         @media (min-width: 768px) {
             .sidebar {
@@ -47,11 +50,11 @@
             list-style: none;
             padding: 0;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
         .sidebar ul li {
-            margin: 10px;
+            margin: 10px 0;
         }
         .sidebar ul li a {
             text-decoration: none;
@@ -64,6 +67,12 @@
         .sidebar ul li a:hover {
             border: 1px solid #d4af37;
             background: rgba(212, 175, 55, 0.2);
+        }
+        .calendar {
+            text-align: center;
+            margin-top: 20px;
+            color: #d4af37;
+            font-size: 14px;
         }
         .content {
             padding: 20px;
@@ -111,19 +120,32 @@
             height: auto;
         }
     </style>
+    <script>
+        // Set current date in the calendar
+        window.onload = function () {
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("calendar-date").textContent = date.toLocaleDateString('en-US', options);
+        };
+    </script>
 </head>
 <body>
     <div class="main">
         <div class="sidebar">
-            <h2>MENU</h2>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#rules">Rules</a></li>
-                <li><a href="#signup">Sign Up</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#prizes">Prizes</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div>
+                <h2>MENU</h2>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rules">Rules</a></li>
+                    <li><a href="#signup">Sign Up</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#prizes">Prizes</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="calendar">
+                <div id="calendar-date">Loading date...</div>
+            </div>
         </div>
         <div class="content">
             <img src="logo-2.png" alt="Main Logo" class="logo">
