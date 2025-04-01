@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars Armada - European Masters 2025</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             background-color: black;
             color: yellow;
@@ -12,13 +15,14 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .sidebar {
-            width: 250px;
+            width: 100%;
             background: linear-gradient(to bottom, #111, #222);
             padding: 20px;
-            height: 100vh;
-            box-shadow: 4px 0 10px rgba(255, 255, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(255, 255, 0, 0.5);
         }
         .sidebar h2 {
             text-align: center;
@@ -28,52 +32,87 @@
         .sidebar ul {
             list-style: none;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .sidebar ul li {
-            margin: 20px 0;
+            margin: 10px;
         }
         .sidebar ul li a {
             text-decoration: none;
             color: yellow;
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.3s;
-            display: block;
-            padding: 10px;
-            border-left: 3px solid transparent;
+            padding: 8px 12px;
+            border: 1px solid transparent;
         }
         .sidebar ul li a:hover {
-            border-left: 3px solid yellow;
+            border: 1px solid yellow;
             background: rgba(255, 255, 0, 0.2);
         }
         .content {
-            flex-grow: 1;
-            padding: 40px;
+            padding: 20px;
             text-align: center;
-            perspective: 800px;
-        }
-        h1 {
-            display: none;
+            flex-grow: 1;
         }
         .logo {
             width: 100%;
-            max-width: 700px;
+            max-width: 400px;
             display: block;
             margin: 20px auto;
         }
         .title-eu {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             text-align: center;
             transform: perspective(800px) rotateX(20deg) scaleY(1.2);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .description {
-            max-width: 500px;
-            margin: 20px auto;
-            font-size: 26px;
-            line-height: 1.7;
+            max-width: 90%;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
             text-align: justify;
             transform: perspective(800px) rotateX(20deg) scaleY(1.2);
+        }
+        .footer {
+            background-color: #111;
+            color: yellow;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 -2px 8px rgba(255, 255, 0, 0.3);
+        }
+        .sponsor-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .sponsor-logos img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+            }
+            .sidebar {
+                width: 250px;
+                height: 100vh;
+                box-shadow: 4px 0 10px rgba(255, 255, 0, 0.5);
+            }
+            .sidebar ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .content {
+                padding: 40px;
+            }
         }
     </style>
 </head>
@@ -93,6 +132,14 @@
         <img src="logo-2.png" alt="Main Logo" class="logo">
         <div class="title-eu">EUROPEAN MASTERS 2025</div>
         <p class="description">The European Star Wars Armada community is honored to invite you to the reactivated European Championship. The Championship will be held in a different location each year. The leaders of the European Community have chosen Poland, Gdańsk, as the location for the first tournament. The tournament will take place during the AleGramy festival organized on 15/16.11.2025.</p>
+    </div>
+    <div class="footer">
+        <div>Sponsorzy wydarzenia</div>
+        <div class="sponsor-logos">
+            <img src="s1.png" alt="Sponsor 1">
+            <img src="s2.png" alt="Sponsor 2">
+            <img src="s3.png" alt="Sponsor 3">
+        </div>
     </div>
 </body>
 </html>
