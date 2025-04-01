@@ -14,9 +14,17 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+        }
+        .main {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+        @media (min-width: 768px) {
+            .main {
+                flex-direction: row;
+            }
         }
         .sidebar {
             width: 100%;
@@ -83,7 +91,6 @@
             text-align: center;
             padding: 20px;
             box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.3);
-            margin-top: auto;
         }
         .sponsor-logos {
             display: flex;
@@ -97,42 +104,26 @@
             max-width: 100px;
             height: auto;
         }
-
-        @media (min-width: 768px) {
-            body {
-                flex-direction: row;
-            }
-            .sidebar {
-                width: 250px;
-                height: 100vh;
-                box-shadow: 4px 0 10px rgba(212, 175, 55, 0.5);
-            }
-            .sidebar ul {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .content {
-                padding: 40px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>MENU</h2>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#rules">Rules</a></li>
-            <li><a href="#signup">Sign Up</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#prizes">Prizes</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <img src="logo-2.png" alt="Main Logo" class="logo">
-        <div class="title-eu">EUROPEAN MASTERS 2025</div>
-        <p class="description">The European Star Wars Armada community is honored to invite you to the reactivated European Championship. The Championship will be held in a different location each year. The leaders of the European Community have chosen Poland, Gdańsk, as the location for the first tournament. The tournament will take place during the AleGramy festival organized on 15/16.11.2025.</p>
+    <div class="main">
+        <div class="sidebar">
+            <h2>MENU</h2>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#rules">Rules</a></li>
+                <li><a href="#signup">Sign Up</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#prizes">Prizes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <img src="logo-2.png" alt="Main Logo" class="logo">
+            <div class="title-eu">EUROPEAN MASTERS 2025</div>
+            <p class="description">The European Star Wars Armada community is honored to invite you to the reactivated European Championship. The Championship will be held in a different location each year. The leaders of the European Community have chosen Poland, Gdańsk, as the location for the first tournament. The tournament will take place during the AleGramy festival organized on 15/16.11.2025.</p>
+        </div>
     </div>
     <div class="footer">
         <div>Event Sponsors</div>
@@ -140,6 +131,8 @@
             <img src="s1.bmp" alt="Sponsor 1">
             <img src="s2.bmp" alt="Sponsor 2">
             <img src="s3.bmp" alt="Sponsor 3">
+            <img src="s4.bmp" alt="Sponsor 4">
+            <img src="s5.bmp" alt="Sponsor 5">
         </div>
     </div>
 </body>
