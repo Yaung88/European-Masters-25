@@ -27,18 +27,6 @@
             height: 100%;
             z-index: 1000;
         }
-        .sidebar-tab {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            background-color: #d4af37;
-            color: black;
-            font-weight: bold;
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 0 5px 5px 0;
-            z-index: 1001;
-        }
         .sidebar {
             position: absolute;
             top: 0;
@@ -49,6 +37,27 @@
             padding: 20px;
             box-shadow: 4px 0 10px rgba(212, 175, 55, 0.5);
             transition: left 0.3s ease;
+        }
+        .sidebar-tab {
+            position: absolute;
+            top: 0;
+            right: -40px;
+            width: 40px;
+            height: 100%;
+            background-color: #d4af37;
+            cursor: pointer;
+        }
+        .sidebar-tab::after {
+            content: "MENU";
+            position: absolute;
+            top: 20px;
+            left: -42px;
+            width: 100px;
+            transform: rotate(-90deg);
+            transform-origin: left top;
+            color: black;
+            font-weight: bold;
+            font-size: 12px;
         }
         .sidebar-wrapper:hover .sidebar {
             left: 0;
@@ -176,7 +185,6 @@
             updateCountdown();
             setInterval(updateCountdown, 1000);
 
-            // Lightsaber sound trigger on sidebar reveal
             const sidebarWrapper = document.querySelector('.sidebar-wrapper');
             const saberSound = document.getElementById('saber-sound');
             sidebarWrapper.addEventListener('mouseenter', () => {
@@ -190,8 +198,8 @@
     <audio id="saber-sound" src="lightsaber.mp3" preload="auto"></audio>
     <div class="main">
         <div class="sidebar-wrapper">
-            <div class="sidebar-tab">MENU</div>
             <div class="sidebar">
+                <div class="sidebar-tab"></div>
                 <div>
                     <h2>MENU</h2>
                     <ul>
