@@ -94,11 +94,19 @@
         }
         .description {
             max-width: 400px;
-            margin: 0 auto 80px auto;
+            margin: 0 auto 40px auto;
             font-size: 18px;
             line-height: 1.6;
             text-align: justify;
             transform: perspective(800px) rotateX(20deg) scaleY(1.2);
+        }
+        .countdown-box {
+            border: 2px solid #d4af37;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto 80px auto;
+            font-size: 20px;
+            text-align: center;
         }
         .footer {
             background-color: white;
@@ -126,6 +134,28 @@
             const date = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById("calendar-date").textContent = date.toLocaleDateString('en-US', options);
+
+            // Countdown setup
+            const eventDate = new Date('2025-11-15T07:00:00Z'); // 8:00 CET = 7:00 UTC
+            const countdownElement = document.getElementById("countdown");
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = eventDate - now;
+
+                if (diff <= 0) {
+                    countdownElement.textContent = "The event has started!";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+                countdownElement.textContent = `${days} days and ${hours} hours left until the event.`;
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000 * 60); // update every minute
         };
     </script>
 </head>
@@ -151,6 +181,9 @@
             <img src="logo-2.png" alt="Main Logo" class="logo">
             <div class="title-eu">EUROPEAN MASTERS 2025</div>
             <p class="description">The European Star Wars Armada community is honored to invite you to the reactivated European Championship. The Championship will be held in a different location each year. The leaders of the European Community have chosen Poland, Gdańsk, as the location for the first tournament. The tournament will take place during the AleGramy festival organized on 15/16.11.2025.</p>
+            <div class="countdown-box">
+                <div id="countdown">Loading countdown...</div>
+            </div>
         </div>
     </div>
     <div class="footer">
