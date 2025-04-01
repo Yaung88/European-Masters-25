@@ -40,21 +40,19 @@
         }
         .sidebar-tab {
             position: absolute;
-            top: 0;
-            right: -40px;
-            width: 40px;
-            height: 100%;
+            bottom: 20px;
+            right: -20px;
+            width: 20px;
+            height: 100px;
             background-color: #d4af37;
             cursor: pointer;
         }
         .sidebar-tab::after {
             content: "MENU";
             position: absolute;
-            top: 20px;
-            left: -42px;
-            width: 100px;
-            transform: rotate(-90deg);
-            transform-origin: left top;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
             color: black;
             font-weight: bold;
             font-size: 12px;
@@ -117,7 +115,7 @@
             font-size: 28px;
             font-weight: bold;
             text-align: center;
-            transform: perspective(800px) rotateX(20deg) scaleY(1.2);
+            transform: perspective(800px) rotateX(30deg) scaleY(1.2);
             margin-bottom: 20px;
         }
         .description {
@@ -126,7 +124,7 @@
             font-size: 18px;
             line-height: 1.6;
             text-align: justify;
-            transform: perspective(800px) rotateX(20deg) scaleY(1.2);
+            transform: perspective(800px) rotateX(30deg) scaleY(1.2);
         }
         .countdown-box {
             border: 2px solid #d4af37;
