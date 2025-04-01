@@ -94,7 +94,7 @@
         }
         .description {
             max-width: 400px;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 60px auto;
             font-size: 18px;
             line-height: 1.6;
             text-align: justify;
@@ -129,14 +129,12 @@
         }
     </style>
     <script>
-        // Set current date in the calendar
         window.onload = function () {
             const date = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById("calendar-date").textContent = date.toLocaleDateString('en-US', options);
 
-            // Countdown setup
-            const eventDate = new Date('2025-11-15T07:00:00Z'); // 8:00 CET = 7:00 UTC
+            const eventDate = new Date('2025-11-15T07:00:00Z');
             const countdownElement = document.getElementById("countdown");
 
             function updateCountdown() {
@@ -150,12 +148,14 @@
 
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
 
-                countdownElement.textContent = `${days} days and ${hours} hours left until the event.`;
+                countdownElement.textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds left until the event.`;
             }
 
             updateCountdown();
-            setInterval(updateCountdown, 1000 * 60); // update every minute
+            setInterval(updateCountdown, 1000);
         };
     </script>
 </head>
