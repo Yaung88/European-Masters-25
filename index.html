@@ -20,8 +20,27 @@
             display: flex;
             min-height: 100vh;
         }
-        .sidebar {
+        .sidebar-wrapper {
             position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 1000;
+        }
+        .sidebar-tab {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            background-color: #d4af37;
+            color: black;
+            font-weight: bold;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            z-index: 1001;
+        }
+        .sidebar {
+            position: absolute;
             top: 0;
             left: -230px;
             width: 230px;
@@ -30,31 +49,9 @@
             padding: 20px;
             box-shadow: 4px 0 10px rgba(212, 175, 55, 0.5);
             transition: left 0.3s ease;
-            z-index: 1000;
         }
-        .sidebar:hover {
+        .sidebar-wrapper:hover .sidebar {
             left: 0;
-        }
-        .sidebar::before {
-            content: 'MENU';
-            position: absolute;
-            top: 10px;
-            right: -40px;
-            width: 40px;
-            height: 20px;
-            background-color: #d4af37;
-            color: black;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(-90deg);
-            transform-origin: top right;
-            cursor: pointer;
-            font-size: 10px;
-        }
-        .sidebar:hover ~ audio {
-            display: block;
         }
         .sidebar h2 {
             text-align: center;
@@ -179,10 +176,10 @@
             updateCountdown();
             setInterval(updateCountdown, 1000);
 
-            // Lightsaber sound trigger on sidebar hover
-            const sidebar = document.querySelector('.sidebar');
+            // Lightsaber sound trigger on sidebar reveal
+            const sidebarWrapper = document.querySelector('.sidebar-wrapper');
             const saberSound = document.getElementById('saber-sound');
-            sidebar.addEventListener('mouseenter', () => {
+            sidebarWrapper.addEventListener('mouseenter', () => {
                 saberSound.currentTime = 0;
                 saberSound.play();
             });
@@ -192,20 +189,23 @@
 <body>
     <audio id="saber-sound" src="lightsaber.mp3" preload="auto"></audio>
     <div class="main">
-        <div class="sidebar">
-            <div>
-                <h2>MENU</h2>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#rules">Rules</a></li>
-                    <li><a href="#signup">Sign Up</a></li>
-                    <li><a href="#schedule">Schedule</a></li>
-                    <li><a href="#prizes">Prizes</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="calendar">
-                <div id="calendar-date">Loading date...</div>
+        <div class="sidebar-wrapper">
+            <div class="sidebar-tab">MENU</div>
+            <div class="sidebar">
+                <div>
+                    <h2>MENU</h2>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#rules">Rules</a></li>
+                        <li><a href="#signup">Sign Up</a></li>
+                        <li><a href="#schedule">Schedule</a></li>
+                        <li><a href="#prizes">Prizes</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="calendar">
+                    <div id="calendar-date">Loading date...</div>
+                </div>
             </div>
         </div>
         <div class="content">
