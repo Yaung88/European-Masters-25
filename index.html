@@ -36,14 +36,25 @@
             left: 0;
         }
         .sidebar::before {
-            content: '';
+            content: 'MENU';
             position: absolute;
-            top: 0;
-            right: -10px;
-            width: 10px;
-            height: 100%;
+            top: 10px;
+            right: -40px;
+            width: 40px;
+            height: 20px;
             background-color: #d4af37;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-90deg);
+            transform-origin: top right;
             cursor: pointer;
+            font-size: 10px;
+        }
+        .sidebar:hover ~ audio {
+            display: block;
         }
         .sidebar h2 {
             text-align: center;
@@ -167,10 +178,19 @@
 
             updateCountdown();
             setInterval(updateCountdown, 1000);
+
+            // Lightsaber sound trigger on sidebar hover
+            const sidebar = document.querySelector('.sidebar');
+            const saberSound = document.getElementById('saber-sound');
+            sidebar.addEventListener('mouseenter', () => {
+                saberSound.currentTime = 0;
+                saberSound.play();
+            });
         };
     </script>
 </head>
 <body>
+    <audio id="saber-sound" src="lightsaber.mp3" preload="auto"></audio>
     <div class="main">
         <div class="sidebar">
             <div>
