@@ -1,299 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars Armada - European Masters 2025</title>
-    <style>
-        * {
-            box-sizing: border-box;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Star Wars Armada - European Masters 2025</title>
+  <style>
+    body {
+      background-color: black;
+      color: #d4af37;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .logo {
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 40px auto;
+    }
+    .title-eu {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      transform: perspective(800px) rotateX(30deg) scaleY(1.2);
+      margin-bottom: 20px;
+    }
+    .description {
+      max-width: 400px;
+      margin: 0 auto 60px auto;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: justify;
+      transform: perspective(800px) rotateX(30deg) scaleY(1.2);
+    }
+    .footer {
+      background-color: white;
+      color: black;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.3);
+    }
+    .sponsor-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .sponsor-logos img {
+      max-width: 100px;
+      height: auto;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      const eventDate = new Date('2025-11-15T07:00:00Z');
+      const countdownElement = document.getElementById("countdown");
+      function updateCountdown() {
+        const now = new Date();
+        const diff = eventDate - now;
+        if (diff <= 0) {
+          countdownElement.textContent = "The event has started!";
+          return;
         }
-        body {
-            background-color: black;
-            color: #d4af37;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        .main {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            z-index: 1000;
-        }
-        .sidebar {
-            position: absolute;
-            top: 0;
-            left: -270px;
-            width: 270px;
-            height: 100%;
-            background: linear-gradient(to bottom, #111, #222);
-            padding: 20px;
-            box-shadow: 4px 0 10px rgba(212, 175, 55, 0.5);
-            transition: left 0.3s ease;
-        }
-        .sidebar-tab {
-            position: absolute;
-            top: 80px;
-            right: -20px;
-            width: 20px;
-            height: 100px;
-            background-color: #d4af37;
-            cursor: pointer;
-        }
-        .sidebar-tab::after {
-            content: "MENU";
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-90deg);
-            color: black;
-            font-weight: bold;
-            font-size: 12px;
-        }
-        .sidebar-wrapper:hover .sidebar {
-            left: 0;
-        }
-        .sidebar h2 {
-            text-align: center;
-            color: #d4af37;
-            font-family: 'Star Jedi', sans-serif;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .sidebar ul li {
-            margin: 10px 0;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #d4af37;
-            font-size: 16px;
-            transition: 0.3s;
-            padding: 8px 12px;
-            border: 1px solid transparent;
-        }
-        .sidebar ul li a:hover {
-            border: 1px solid #d4af37;
-            background: rgba(212, 175, 55, 0.2);
-        }
-        .calendar {
-            text-align: center;
-            margin-top: 20px;
-            color: #d4af37;
-            font-size: 14px;
-        }
-        .content {
-            margin-left: 0;
-            padding: 20px;
-            text-align: center;
-            flex-grow: 1;
-            width: 100%;
-        }
-        @media (min-width: 768px) {
-            .content {
-                margin-left: 270px;
-            }
-        }
-        .logo {
-            width: 100%;
-            max-width: 800px;
-            display: block;
-            margin: 40px auto;
-        }
-        .title-eu {
-            font-size: 28px;
-            font-weight: bold;
-            text-align: center;
-            transform: perspective(800px) rotateX(30deg) scaleY(1.2);
-            margin-bottom: 20px;
-        }
-        .description {
-            max-width: 400px;
-            margin: 0 auto 60px auto;
-            font-size: 18px;
-            line-height: 1.6;
-            text-align: justify;
-            transform: perspective(800px) rotateX(30deg) scaleY(1.2);
-        }
-        .countdown-box {
-            border: 2px solid #d4af37;
-            padding: 20px;
-            max-width: 400px;
-            margin: 0 auto 80px auto;
-            font-size: 20px;
-            text-align: center;
-        }
-        .contact-section {
-            padding: 60px 20px;
-            color: #d4af37;
-            text-align: center;
-        }
-        .contact-section p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .contact-section img {
-            margin-top: 20px;
-            max-width: 100%;
-            height: auto;
-        }
-        .footer {
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 20px;
-            box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.3);
-        }
-        .sponsor-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 10px;
-        }
-        .sponsor-logos img {
-            max-width: 100px;
-            height: auto;
-        }
-    </style>
-    <script>
-        window.onload = function () {
-            const date = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById("calendar-date").textContent = date.toLocaleDateString('en-US', options);
-
-            const eventDate = new Date('2025-11-15T07:00:00Z');
-            const countdownElement = document.getElementById("countdown");
-
-            function updateCountdown() {
-                const now = new Date();
-                const diff = eventDate - now;
-
-                if (diff <= 0) {
-                    countdownElement.textContent = "The event has started!";
-                    return;
-                }
-
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutes = Math.floor((diff / (1000 * 60)) % 60);
-                const seconds = Math.floor((diff / 1000) % 60);
-
-                countdownElement.textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds left until the event.`;
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-
-            const sidebarWrapper = document.querySelector('.sidebar-wrapper');
-            const saberSound = document.getElementById('saber-sound');
-            sidebarWrapper.addEventListener('mouseenter', () => {
-                saberSound.currentTime = 0;
-                saberSound.play();
-            });
-        };
-    </script>
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        countdownElement.textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds left until the event.`;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    };
+  </script>
 </head>
 <body>
-    <audio id="saber-sound" src="lightsaber.mp3" preload="auto"></audio>
-    <div class="main">
-        <div class="sidebar-wrapper">
-            <div class="sidebar">
-                <div class="sidebar-tab"></div>
-                <div>
-                    <h2>MENU</h2>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#gdansk">Meet the City - Gdańsk</a></li>
-                        <li><a href="#rules">Tournament General Rules</a></li>
-                        <li><a href="#signup">Sign Up</a></li>
-                        <li><a href="#schedule">Schedule</a></li>
-                        <li><a href="#prizes">Prizes</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="calendar">
-                    <div id="calendar-date">Loading date...</div>
-                </div>
-            </div>
-        </div>
-        <div class="content">
-            <img src="logo-2.png" alt="Main Logo" class="logo">
-            <div class="title-eu">EUROPEAN MASTERS 2025</div>
-            <p class="description">The European Star Wars Armada community is honored to invite you to the reactivated European Championship. The Championship will be held in a different location each year. The leaders of the European Community have chosen Poland, Gdańsk, as the location for the first tournament. The tournament will take place during the AleGramy festival organized on 15/16.11.2025.</p>
-            <div class="countdown-box">
-                <div id="countdown">Loading countdown...</div>
-            </div>
+  <!-- HOME -->
+  <div class="content" id="home">
+    <img src="logo-2.png" alt="Main Logo" class="logo">
+    <div class="title-eu">EUROPEAN MASTERS 2025</div>
+    <p class="description">
+      The European Star Wars Armada community is honored to invite you to the reactivated European Championship. The Championship will be held in a different location each year. The leaders of the European Community have chosen Poland, Gdańsk, as the location for the first tournament. The tournament will take place during the AleGramy festival organized on 15/16.11.2025.
+    </p>
+  </div>
 
-            <div id="contact" class="contact-section">
-                <h2>Contact</h2>
-                <p><strong>Main judge and organizer:</strong></p>
-                <p>Jarosław Jesikiewicz</p>
-                <p><a href="https://www.facebook.com/jarek.jesikiewicz" target="_blank" style="color: #d4af37;">Facebook Profile</a></p>
-                <p>jarek.jesikiewicz@gmial.com</p>
-                <img src="contact.bmp" alt="Contact image">
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <div>Event Sponsors</div>
-        <div class="sponsor-logos">
-            <a href="https://www.facebook.com/WeWoodPlay/" target="_blank">
-                <img src="s1.bmp" alt="Sponsor 1">
-            </a>
-            <a href="https://aleplanszowki.pl/" target="_blank">
-                <img src="s2.bmp" alt="Sponsor 2">
-            </a>
-            <a href="https://gkf.org.pl/" target="_blank">
-                <img src="s3.bmp" alt="Sponsor 3">
-            </a>
-            <a href="https://jackcustoms.com/" target="_blank">
-                <img src="s5.png" alt="Sponsor 5">
-            </a>
-        </div>
-        </div>
-    <div class="schedule-section" style="text-align: center; padding: 60px 20px;">
+  <!-- COUNTDOWN -->
+  <div style="text-align: center; margin-bottom: 40px;">
+    <div id="countdown" style="font-size: 20px; border: 2px solid #d4af37; padding: 20px; display: inline-block;"></div>
+  </div>
+
+  <!-- GDANSK -->
+  <div id="gdansk" style="padding: 60px 20px; text-align: center;">
+    <h2 style="color: #d4af37;">Meet the City - Gdańsk</h2>
+    <p style="font-size: 18px;">Coming soon: Discover the beauty, history, and atmosphere of the city where the European Championship takes place.</p>
+  </div>
+
+  <!-- RULES -->
+  <div id="rules" style="padding: 60px 20px; text-align: center;">
+    <h2 style="color: #d4af37;">Tournament General Rules</h2>
+    <p style="font-size: 18px;">All players will follow the official Star Wars: Armada tournament rules as provided by AMG and community guidelines. More details coming soon.</p>
+  </div>
+
+  <!-- SIGN UP -->
+  <div id="signup" style="padding: 60px 20px; text-align: center;">
+    <h2 style="color: #d4af37;">Sign Up</h2>
+    <p style="font-size: 18px;">Player registration details will be provided here. Stay tuned!</p>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div id="schedule" style="text-align: center; padding: 60px 20px;">
     <img src="schedule.bmp" alt="Schedule" style="max-width: 100%; height: auto; margin-bottom: 30px;">
     <h2 style="color: #d4af37;">Tournament Structure:</h2>
     <p style="font-size: 18px;">
-        <strong>Day One (15.11.2025 - Saturday)</strong>
-        <a href="https://t4.tools/events/e6f50675-8699-4b3b-8744-1c9ca9e5a97f" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;"> T4D1</a><br>
-        Registration: 09:00 - 09:20<br>
-        Round 1: 09:25 - 11:40<br>
-        Round 2: 11:50 - 14:05<br>
-        Break: 14:05 - 14:40<br>
-        Round 3: 14:40 - 16:55<br>
-        Round 4: 17:10 - 19:25
+      <strong>Day One (15.11.2025 - Saturday)</strong>
+      <a href="https://t4.tools/events/e6f50675-8699-4b3b-8744-1c9ca9e5a97f" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;"> T4D1</a><br>
+      Registration: 09:00 - 09:20<br>
+      Round 1: 09:25 - 11:40<br>
+      Round 2: 11:50 - 14:05<br>
+      Break: 14:05 - 14:40<br>
+      Round 3: 14:40 - 16:55<br>
+      Round 4: 17:10 - 19:25
     </p>
     <p style="font-size: 18px;">
-        <strong>Day Two (16.11.2025 - Sunday)</strong>
-        <a href="https://t4.tools/events/3fbf3a30-05a1-4b66-badf-9e65027f30ee" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;"> T4D2</a><br>
-        - TOP 12:<br>
-        Registration: 09:00 - 09:10<br>
-        Round 1: 09:10 - 11:25<br>
-        Round 2: 11:35 - 13:50<br>
-        Break: 13:50 - 14:15<br>
-        Round 3: 14:15 - 16:30<br>
-        End: 16:45
+      <strong>Day Two (16.11.2025 - Sunday)</strong>
+      <a href="https://t4.tools/events/3fbf3a30-05a1-4b66-badf-9e65027f30ee" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;"> T4D2</a><br>
+      - TOP 12:<br>
+      Registration: 09:00 - 09:10<br>
+      Round 1: 09:10 - 11:25<br>
+      Round 2: 11:35 - 13:50<br>
+      Break: 13:50 - 14:15<br>
+      Round 3: 14:15 - 16:30<br>
+      End: 16:45
     </p>
-</div>
+  </div>
 
-<div style="text-align: center; margin: 40px 0;">
-        <a href="https://fb.me/e/4Ry2iqmEP" target="_blank" style="font-weight: bold; text-decoration: underline; color: #d4af37; font-size: 18px;">
-            Facebook Event Link
-        </a>
+  <!-- PRIZES -->
+  <div id="prizes" style="padding: 60px 20px; text-align: center;">
+    <h2 style="color: #d4af37;">Prizes</h2>
+    <p style="font-size: 18px;">Exciting prizes will be announced soon!</p>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" style="padding: 60px 20px; color: #d4af37; text-align: center;">
+    <h2>Contact</h2>
+    <p><strong>Main judge and organizer:</strong></p>
+    <p>Jarosław Jesikiewicz</p>
+    <p><a href="https://www.facebook.com/jarek.jesikiewicz" target="_blank" style="color: #d4af37;">Facebook Profile</a></p>
+    <p>jarek.jesikiewicz@gmial.com</p>
+    <img src="contact.bmp" alt="Contact image" style="margin-top: 20px; max-width: 100%; height: auto;">
+  </div>
+
+  <!-- FACEBOOK EVENT LINK -->
+  <div style="text-align: center; margin: 40px 0;">
+    <a href="https://fb.me/e/4Ry2iqmEP" target="_blank" style="font-weight: bold; text-decoration: underline; color: #d4af37; font-size: 18px;">
+      Facebook Event Link
+    </a>
+  </div>
+
+  <!-- SPONSORS -->
+  <div class="footer">
+    <div>Event Sponsors</div>
+    <div class="sponsor-logos">
+      <a href="https://www.facebook.com/WeWoodPlay/" target="_blank">
+        <img src="s1.bmp" alt="Sponsor 1">
+      </a>
+      <a href="https://aleplanszowki.pl/" target="_blank">
+        <img src="s2.bmp" alt="Sponsor 2">
+      </a>
+      <a href="https://gkf.org.pl/" target="_blank">
+        <img src="s3.bmp" alt="Sponsor 3">
+      </a>
+      <a href="https://jackcustoms.com/" target="_blank">
+        <img src="s5.bmp" alt="Sponsor 5">
+      </a>
     </div>
+  </div>
 </body>
 </html>
