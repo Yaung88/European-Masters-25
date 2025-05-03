@@ -61,17 +61,24 @@
   }
 
   /* Nowe style dla zdjęcia "opis" */
- .opis-container {
+.opis-container {
   text-align: center;
   margin-top: 20px;
 }
 
 .opis-image {
-  width: 100%;
-  max-width: 100%;
+  width: 50%;        /* 50% szerokości na dużym ekranie */
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+/* Na telefonach — pełna szerokość */
+@media (max-width: 600px) {
+  .opis-image {
+    width: 100%;
+  }
+}
   /* bez ramki, bez zaokrągleń */
 }
 
