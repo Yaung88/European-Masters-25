@@ -72,6 +72,43 @@
     border: 2px solid #d4af37;
     border-radius: 10px;
   }
+    .logo,
+.opis-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* MEDIA QUERY – poprawki dla małych ekranów (telefony) */
+@media (max-width: 600px) {
+  .title-eu {
+    font-size: 20px;
+    transform: none;
+    margin: 20px 10px;
+  }
+
+  .description {
+    font-size: 16px;
+    transform: none;
+    padding: 0 10px;
+    text-align: left;
+  }
+
+  .opis-image {
+    border-width: 1px;
+    border-radius: 6px;
+  }
+
+  .sidebar {
+    width: 200px !important;
+  }
+
+  .sidebar-tab {
+    height: 80px !important;
+    top: 60px !important;
+  }
   </style>
   <script>
     window.onload = function () {
